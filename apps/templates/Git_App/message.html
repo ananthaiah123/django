@@ -1,0 +1,8 @@
+{% extends "Git_App/base.html" %}
+
+{% block content %}
+<div class="jumbotron">
+    <h2 class="display-4">The {{ username }} us successfully signedup. Please click below to login</h2>
+    <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Login</a>
+  </div>
+{% endblock %}

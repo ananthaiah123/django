@@ -1,0 +1,156 @@
+{% extends "Git_App/base.html" %}
+
+{% block content %}
+{% load static %}
+    <style>
+      .imgs{
+        width: 100%;
+        height: 100vh;
+        position: center;
+        size: cover;
+        margin: 0px;
+      }
+    </style>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Suite-Tool</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Products</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Resources
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action-1</a>
+            <a class="dropdown-item" href="#">Action-2</a>
+            <!--<div class="dropdown-divider"></div>-->
+            <a class="dropdown-item" href="#">Action-3</a>
+          </div>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0 mr-auto">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="width: 48rem;">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown" style="font-style: italic;">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDrop" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               {{ user }}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Profile</a>
+              <a class="dropdown-item" href="#">Settings</a>
+              <div class="dropdown-divider"></div>
+              <a href="#" onclick="$('#signOutBtn').click()" class="dropdown-item">Logout</a>
+                <form style='display: none;' method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button id="signOutBtn" type="submit">Logout</button>
+                </form>
+            </div>
+          </li>
+      </ul>
+      
+    </div>
+  </nav>
+  
+<!--
+<div class="imgs">
+  <img src="{% static '/Git_App/db.jpg' %}" class="img-fluid imgs" alt="Responsive image">
+</div>-->
+
+<br>
+
+<div class="container">
+  <form action="{% url 'dashboard' %}" method="POST">
+    {% csrf_token %}
+    <button type="submit" style="float: right;">
+      Reset all Fields
+    </button>
+  </form>
+
+</div>
+
+<br><br>
+  <div class="container">
+    <div class="card-deck card">
+      <div class="card">
+        <br>
+        <p class="card text">Upload a audio file to convert speech to text.</p>
+        <br>
+        <br>
+        <a href="{% url 'Audioupload' %}" class="btn btn-success" style="float: right;">Upload</a>
+<br>
+<br>
+        
+      </div>
+      <div class="card">
+        <form action="{% url 'analysis' %}" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <br>
+          <div class="table-responsive">
+            <input type="text" name="test" placeholder="Enter text to analysis">
+            <button type="submit">Submit</button>
+          </div>
+          <br>
+          <div>
+            <label for="w3review">Result after sentimental analysis:</label>
+<textarea readonly id="w3review" name="w3review" rows="4" cols="40">
+  {{   result1   }}
+  
+  </textarea>
+          </div>
+      </form>
+      </div>
+      <div class="card">
+        <br>
+        <form action="{% url 'import_doc_csv' %}" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="table-responsive">
+              <input type="file" name="csv_file" id="csv" />
+              <br/>
+             
+          </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Upload</button>
+      </div>
+      </form>
+      <div>
+        {{ endresult }}
+      </div>
+      
+      </div>
+    </div>
+  </div>
+  <br>
+  <!--
+    <form action="{% url 'test' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" id="myFile" name="filetest">
+    <input type="submit">
+  </form>
+
+  -->
+  
+  
+  {% endblock %}
+  
+
+  <!--
+    <img class="card-img-top" src="{% static '/Git_App/Gitrequest.jpeg' %}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+  -->
+  

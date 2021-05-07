@@ -1,0 +1,46 @@
+{% extends "Git_App/base.html" %}
+
+
+
+{% block content %}
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-5" style="text-align: center;">
+            <h2 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">DevOps Signup</h2>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-4">
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" class="form-control" placeholder="Enter Username" id="username" aria-describedby="usernameHelp">
+                    <small id="usernameHelp" class="form-text text-muted">Your username must be unique. Will let you know if it is there.</small>
+                </div>
+                <div class="form-group">
+                    <label for="password1">Password</label>
+                    <input type="password" name="password1" class="form-control" placeholder="Enter Password" id="password1">
+                    <small id="usernameHelp" class="form-text text-muted">Please remember your password</small>
+                </div>
+                <div class="form-group">
+                    <label for="password2">Confirm Password</label>
+                    <input type="password" name="password2" class="form-control" placeholder="Confirm Username" id="password2">
+                </div>
+                <div class="form-group">
+                    <label for="gmail">Enter Gmail</label>
+                    <input type="text" name="gmail" class="form-control" placeholder="Enter Gmail" id="Gmail">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+            </form>
+            <hr>
+            <div class="text-center">
+                Do you already have an account? <a href="{% url 'login' %}">Login here</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% load crispy_forms_tags %}
+<div class="container">
+    <div class="col-md-10 offset-md-1 mt-5">
+        <div class="jumbotron" style="margin-top: 40pt;margin-left: 200px;">
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary" style="float: right;">Upload</button>
+          </form>
+        </div>   
+    </div>
+</div>

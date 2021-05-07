@@ -1,0 +1,33 @@
+{% extends "Git_App/base.html" %}
+
+{% block content %}
+<style>
+  .jumbotron {
+  height: 200px;
+  position: relative;
+  border: 3px solid green;
+}
+ 
+  .center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+  </style>
+  
+<div class="container">
+  
+    <div class="jumbotron" style="margin-top: 10rem; padding-bottom: 10rem;">
+      <div class="center">
+        <h1 class="display-8" style="text-align: center;">Your Session has been logged out</h1>
+        <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button" >Login</a>
+      </div>
+    </div>
+</div>
+  
+
+
+{% endblock %}
